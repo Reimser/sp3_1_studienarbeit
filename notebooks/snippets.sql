@@ -1,444 +1,86 @@
--- Dimensionstabelle für Klassenstufe
-CREATE TABLE dim_klasse (
-    Schluessel INTEGER PRIMARY KEY,
-    SCHUELER_KLSS_STP INTEGER,
-    SCHUELER_KLSS_STP__M INTEGER,
-    SCHUELER_KLSS_STP__W INTEGER,
-    SCHUELER_KLSS_STP__1 INTEGER,
-    SCHUELER_KLSS_STP__1_M INTEGER,
-    SCHUELER_KLSS_STP__1_W INTEGER,
-    SCHUELER_KLSS_STP__2 INTEGER,
-    SCHUELER_KLSS_STP__2_M INTEGER,
-    SCHUELER_KLSS_STP__2_W INTEGER,
-    SCHUELER_KLSS_STP__3 INTEGER,
-    SCHUELER_KLSS_STP__3_M INTEGER,
-    SCHUELER_KLSS_STP__3_W INTEGER
-);
+-- Sicherstellen, dass jede Dimensionstabelle einen Primärschlüssel hat
+ALTER TABLE dim_bund ADD PRIMARY KEY (Bundschluessel);
+ALTER TABLE dim_land ADD PRIMARY KEY (Landesschluessel);
+ALTER TABLE dim_gemeinde ADD PRIMARY KEY (Gemeindeschluessel);
+ALTER TABLE dim_gemeindeverband ADD PRIMARY KEY (Gemeindeverbandsschluessel);
+ALTER TABLE dim_regierungsbezirk ADD PRIMARY KEY (RegBezirkschluessel);
+ALTER TABLE dim_stadtkreiskreisfreiestadtlandkreis ADD PRIMARY KEY (Kreisschluessel);
+ALTER TABLE dim_stadt_typen ADD PRIMARY KEY (Schluessel);
 
--- Dimensionstabelle für Schulform
-CREATE TABLE dim_schulform (
-    Schluessel INTEGER PRIMARY KEY,
-    SCHUELER_SCH_STP INTEGER,
-    SCHUELER_SCH_STP__M INTEGER,
-    SCHUELER_SCH_STP__W INTEGER,
-    SCHUELER_SCH_STP__1 INTEGER,
-    SCHUELER_SCH_STP__1_M INTEGER,
-    SCHUELER_SCH_STP__1_W INTEGER,
-    SCHUELER_SCH_STP__2 INTEGER,
-    SCHUELER_SCH_STP__2_M INTEGER,
-    SCHUELER_SCH_STP__2_W INTEGER,
-    SCHUELER_SCH_STP__3 INTEGER,
-    SCHUELER_SCH_STP__3_M INTEGER,
-    SCHUELER_SCH_STP__3_W INTEGER,
-    SCHUELER_SCH_STP__4 INTEGER,
-    SCHUELER_SCH_STP__4_M INTEGER,
-    SCHUELER_SCH_STP__4_W INTEGER,
-    SCHUELER_SCH_STP__5 INTEGER,
-    SCHUELER_SCH_STP__5_M INTEGER,
-    SCHUELER_SCH_STP__5_W INTEGER,
-    SCHUELER_SCH_STP__6 INTEGER,
-    SCHUELER_SCH_STP__6_M INTEGER,
-    SCHUELER_SCH_STP__6_W INTEGER,
-    SCHUELER_SCH_STP__7 INTEGER,
-    SCHUELER_SCH_STP__7_M INTEGER,
-    SCHUELER_SCH_STP__7_W INTEGER
-);
--- Dimensionstabelle für höchsten Schulabschluss
-CREATE TABLE dim_abschluss (
-    Schluessel INTEGER PRIMARY KEY,
-    SCHULABS_STP INTEGER,
-    SCHULABS_STP__M INTEGER,
-    SCHULABS_STP__W INTEGER,
-    SCHULABS_STP__1 INTEGER,
-    SCHULABS_STP__1_M INTEGER,
-    SCHULABS_STP__1_W INTEGER,
-    SCHULABS_STP__2 INTEGER,
-    SCHULABS_STP__2_M INTEGER,
-    SCHULABS_STP__2_W INTEGER,
-    SCHULABS_STP__3 INTEGER,
-    SCHULABS_STP__3_M INTEGER,
-    SCHULABS_STP__3_W INTEGER,
-    SCHULABS_STP__22 INTEGER,
-    SCHULABS_STP__22_M INTEGER,
-    SCHULABS_STP__22_W INTEGER,
-    SCHULABS_STP__23 INTEGER,
-    SCHULABS_STP__23_M INTEGER,
-    SCHULABS_STP__23_W INTEGER,
-    SCHULABS_STP__24 INTEGER,
-    SCHULABS_STP__24_M INTEGER,
-    SCHULABS_STP__24_W INTEGER
-);
+ALTER TABLE dim_klassenstufe ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_schulform ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_hoechster_schulabschluss ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_hoechster_berufl_abschluss ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_erwerbsstatus ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_et_alter ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_et_hoechst_berufl_abschl ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_et_stellung_im_beruf ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_et_beruf_hauptgr_isco08 ADD PRIMARY KEY (Schluessel);
+ALTER TABLE dim_et_wirtschaftszweig ADD PRIMARY KEY (Schluessel);
 
--- Dimensionstabelle für höchsten beruflichen Abschluss
-CREATE TABLE dim_berufl_abschluss (
-    Schluessel INTEGER PRIMARY KEY,
-    BERUFABS_AUSF_STP INTEGER,
-    BERUFABS_AUSF_STP__M INTEGER,
-    BERUFABS_AUSF_STP__W INTEGER,
-    BERUFABS_AUSF_STP__1 INTEGER,
-    BERUFABS_AUSF_STP__1_M INTEGER,
-    BERUFABS_AUSF_STP__1_W INTEGER,
-    BERUFABS_AUSF_STP__11 INTEGER,
-    BERUFABS_AUSF_STP__11_M INTEGER,
-    BERUFABS_AUSF_STP__11_W INTEGER,
-    BERUFABS_AUSF_STP__15 INTEGER,
-    BERUFABS_AUSF_STP__15_W INTEGER,
-    BERUFABS_AUSF_STP__16 INTEGER,
-    BERUFABS_AUSF_STP__16_M INTEGER,
-    BERUFABS_AUSF_STP__16_W INTEGER,
-    BERUFABS_AUSF_STP__17 INTEGER,
-    BERUFABS_AUSF_STP__17_M INTEGER,
-    BERUFABS_AUSF_STP__17_W INTEGER,
-    BERUFABS_AUSF_STP__2 INTEGER,
-    BERUFABS_AUSF_STP__2_M INTEGER,
-    BERUFABS_AUSF_STP__2_W INTEGER
-);
-
--- Dimensionstabelle für Erwerbsstatus
-CREATE TABLE dim_erwerbsstatus (
-    Schluessel INTEGER PRIMARY KEY,
-    ERWERBSTAT_KURZ_STP INTEGER,
-    ERWERBSTAT_KURZ_STP__M INTEGER,
-    ERWERBSTAT_KURZ_STP__W INTEGER,
-    ERWERBSTAT_KURZ_STP__1 INTEGER,
-    ERWERBSTAT_KURZ_STP__1_M INTEGER,
-    ERWERBSTAT_KURZ_STP__1_W INTEGER,
-    ERWERBSTAT_KURZ_STP__11 INTEGER,
-    ERWERBSTAT_KURZ_STP__11_M INTEGER,
-    ERWERBSTAT_KURZ_STP__11_W INTEGER,
-    ERWERBSTAT_KURZ_STP__12 INTEGER,
-    ERWERBSTAT_KURZ_STP__12_M INTEGER,
-    ERWERBSTAT_KURZ_STP__12_W INTEGER,
-    ERWERBSTAT_KURZ_STP__2 INTEGER,
-    ERWERBSTAT_KURZ_STP__2_M INTEGER,
-    ERWERBSTAT_KURZ_STP__2_W INTEGER
-);
-
--- Dimensionstabelle für Alter
-CREATE TABLE dim_alter (
-    Schluessel INTEGER PRIMARY KEY,
-    ET_ALTER_ERW INTEGER,
-    ET_ALTER_ERW__M INTEGER,
-    ET_ALTER_ERW__W INTEGER,
-    ET_ALTER_ERW__1 INTEGER,
-    ET_ALTER_ERW__1_M INTEGER,
-    ET_ALTER_ERW__1_W INTEGER,
-    ET_ALTER_ERW__2 INTEGER,
-    ET_ALTER_ERW__2_M INTEGER,
-    ET_ALTER_ERW__2_W INTEGER,
-    ET_ALTER_ERW__3 INTEGER,
-    ET_ALTER_ERW__3_M INTEGER,
-    ET_ALTER_ERW__3_W INTEGER,
-    ET_ALTER_ERW__4 INTEGER,
-    ET_ALTER_ERW__4_M INTEGER,
-    ET_ALTER_ERW__4_W INTEGER,
-    ET_ALTER_ERW__5 INTEGER,
-    ET_ALTER_ERW__5_M INTEGER,
-    ET_ALTER_ERW__5_W INTEGER,
-    ET_ALTER_ERW__6 INTEGER,
-    ET_ALTER_ERW__6_M INTEGER,
-    ET_ALTER_ERW__6_W INTEGER,
-    ET_ALTER_ERW__7 INTEGER,
-    ET_ALTER_ERW__7_M INTEGER,
-    ET_ALTER_ERW__7_W INTEGER
-);
-
--- Dimensionstabelle für Beruf
-CREATE TABLE dim_beruf (
-    Schluessel INTEGER PRIMARY KEY,
-    ET_BERUFSKLSS_HGISCO_STP INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__M INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__W INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__1 INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__1_M INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__1_W INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__2 INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__2_M INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__2_W INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__7 INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__7_M INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__7_W INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__8 INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__8_M INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__8_W INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__9 INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__9_M INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__9_W INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__0 INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__0_M INTEGER,
-    ET_BERUFSKLSS_HGISCO_STP__0_W INTEGER
-);
-CREATE TABLE dim_wirtschaftszweig (
-    Schluessel INTEGER PRIMARY KEY,
-    ET_WIRTSZWG_STP INTEGER,
-    ET_WIRTSZWG_STP__M INTEGER,
-    ET_WIRTSZWG_STP__W INTEGER,
-    ET_WIRTSZWG_STP__1 INTEGER,
-    ET_WIRTSZWG_STP__1_M INTEGER,
-    ET_WIRTSZWG_STP__1_W INTEGER,
-    ET_WIRTSZWG_STP__2 INTEGER,
-    ET_WIRTSZWG_STP__2_M INTEGER,
-    ET_WIRTSZWG_STP__2_W INTEGER,
-    ET_WIRTSZWG_STP__33 INTEGER,
-    ET_WIRTSZWG_STP__33_W INTEGER,
-    ET_WIRTSZWG_STP__34 INTEGER,
-    ET_WIRTSZWG_STP__34_M INTEGER,
-    ET_WIRTSZWG_STP__34_W INTEGER,
-    ET_WIRTSZWG_STP__35 INTEGER,
-    ET_WIRTSZWG_STP__35_M INTEGER,
-    ET_WIRTSZWG_STP__35_W INTEGER,
-    ET_WIRTSZWG_STP__36 INTEGER,
-    ET_WIRTSZWG_STP__36_M INTEGER,
-    ET_WIRTSZWG_STP__36_W INTEGER
-);
-
--- Dimensionstabelle für Stellung im Beruf
-CREATE TABLE dim_stellung (
-    Schluessel INTEGER PRIMARY KEY,
-    ET_STELLGBERF_STP INTEGER,
-    ET_STELLGBERF_STP__M INTEGER,
-    ET_STELLGBERF_STP__W INTEGER,
-    ET_STELLGBERF_STP__1 INTEGER,
-    ET_STELLGBERF_STP__1_M INTEGER,
-    ET_STELLGBERF_STP__1_W INTEGER,
-    ET_STELLGBERF_STP__2 INTEGER,
-    ET_STELLGBERF_STP__2_M INTEGER,
-    ET_STELLGBERF_STP__2_W INTEGER,
-    ET_STELLGBERF_STP__3 INTEGER,
-    ET_STELLGBERF_STP__3_M INTEGER,
-    ET_STELLGBERF_STP__3_W INTEGER,
-    ET_STELLGBERF_STP__4 INTEGER,
-    ET_STELLGBERF_STP__4_M INTEGER,
-    ET_STELLGBERF_STP__4_W INTEGER,
-    ET_STELLGBERF_STP__5 INTEGER,
-    ET_STELLGBERF_STP__5_M INTEGER,
-    ET_STELLGBERF_STP__5_W INTEGER
-);
-
-# weitere Dimensionstabellen
--- Dimensionstabelle für Regionen
-CREATE TABLE dim_region1 (
-    Gemeindeschlüssel INTEGER PRIMARY KEY,
-    Name TEXT,
-    Gemeindeverbandsschlüssel INTEGER
-);
-
--- Dimensionstabelle für Bund
-CREATE TABLE dim_bund1 (
-    _RS INTEGER PRIMARY KEY,
-    Name TEXT
-);
-
--- Dimensionstabelle für Land
-CREATE TABLE dim_land1 (
-    _RS INTEGER PRIMARY KEY,
-    Name TEXT,
-    Landesschlüssel INTEGER
-);
-
--- Dimensionstabelle für Gemeindeverband
-CREATE TABLE dim_gemeindeverband1 (
-    _RS INTEGER PRIMARY KEY,
-    Name TEXT,
-    Gemeindeverbandsschlüssel INTEGER,
-    Kreisschlüssel INTEGER
-);
-
--- Dimensionstabelle für Regierungsbezirk
-CREATE TABLE dim_regierungsbezirk1 (
-    _RS INTEGER PRIMARY KEY,
-    Name TEXT
-);
-
--- Dimensionstabelle für Stadtkreis / kreisfreie Stadt / Landkreis
-CREATE TABLE dim_stadtkreis_kreisfreie_stadt_landkreis1 (
-    _RS INTEGER PRIMARY KEY,
-    Name TEXT,
-    Kreisschlüssel INTEGER,
-    Landesschlüssel INTEGER
+#Faktentabelle erstellen
+CREATE TABLE faktentabelle (
+    Faktenschluessel INTEGER PRIMARY KEY AUTOINCREMENT,
+    Bundschluessel INTEGER,
+    Landesschluessel INTEGER,
+    Gemeindeschluessel INTEGER,
+    Gemeindeverbandsschluessel INTEGER,
+    RegBezirkschluessel INTEGER,
+    Kreisschluessel INTEGER,
+    StadtTypSchluessel INTEGER,
+    Gesamtbevölkerung INTEGER,
+    Erwerbstätige INTEGER,
+    Arbeitslose INTEGER,
+    Schulabschlüsse INTEGER,
+    BeruflicheAbschlüsse INTEGER,
+    -- Fremdschlüssel-Beziehungen definieren
+    FOREIGN KEY (Bundschluessel) REFERENCES dim_bund(Bundschluessel),
+    FOREIGN KEY (Landesschluessel) REFERENCES dim_land(Landesschluessel),
+    FOREIGN KEY (Gemeindeschluessel) REFERENCES dim_gemeinde(Gemeindeschluessel),
+    FOREIGN KEY (Gemeindeverbandsschluessel) REFERENCES dim_gemeindeverband(Gemeindeverbandsschluessel),
+    FOREIGN KEY (RegBezirkschluessel) REFERENCES dim_regierungsbezirk(RegBezirkschluessel),
+    FOREIGN KEY (Kreisschluessel) REFERENCES dim_stadtkreiskreisfreiestadtlandkreis(Kreisschluessel),
+    FOREIGN KEY (StadtTypSchluessel) REFERENCES dim_stadt_typen(Schluessel)
 );
 
 
-# Faktentabelle
-CREATE TABLE fact_zensus (
-    Schluessel INTEGER PRIMARY KEY,
-    klasse_schluessel INTEGER,
-    schulform_schluessel INTEGER,
-    abschluss_schluessel INTEGER,
-    berufl_abschluss_schluessel INTEGER,
-    erwerbsstatus_schluessel INTEGER,
-    alter_schluessel INTEGER,
-    beruf_schluessel INTEGER,
-    wirtschaftszweig_schluessel INTEGER,
-    stellung_schluessel INTEGER,
-    region_schluessel INTEGER,
-    FOREIGN KEY (klasse_schluessel) REFERENCES dim_klasse(Schluessel),
-    FOREIGN KEY (schulform_schluessel) REFERENCES dim_schulform(Schluessel),
-    FOREIGN KEY (abschluss_schluessel) REFERENCES dim_abschluss(Schluessel),
-    FOREIGN KEY (berufl_abschluss_schluessel) REFERENCES dim_berufl_abschluss(Schluessel),
-    FOREIGN KEY (erwerbsstatus_schluessel) REFERENCES dim_erwerbsstatus(Schluessel),
-    FOREIGN KEY (alter_schluessel) REFERENCES dim_alter(Schluessel),
-    FOREIGN KEY (beruf_schluessel) REFERENCES dim_beruf(Schluessel),
-    FOREIGN KEY (wirtschaftszweig_schluessel) REFERENCES dim_wirtschaftszweig(Schluessel),
-    FOREIGN KEY (stellung_schluessel) REFERENCES dim_stellung(Schluessel),
-    FOREIGN KEY (region_schluessel) REFERENCES dim_region(Gemeindeschlüssel)
-);
-
-# Dimensionstabellen befuellen
-
-INSERT INTO dim_klasse (Schluessel, SCHUELER_KLSS_STP, SCHUELER_KLSS_STP__M, SCHUELER_KLSS_STP__W, SCHUELER_KLSS_STP__1, SCHUELER_KLSS_STP__1_M, SCHUELER_KLSS_STP__1_W, SCHUELER_KLSS_STP__2, SCHUELER_KLSS_STP__2_M, SCHUELER_KLSS_STP__2_W, SCHUELER_KLSS_STP__3, SCHUELER_KLSS_STP__3_M, SCHUELER_KLSS_STP__3_W)
-SELECT Schluessel, SCHUELER_KLSS_STP, SCHUELER_KLSS_STP__M, SCHUELER_KLSS_STP__W, SCHUELER_KLSS_STP__1, SCHUELER_KLSS_STP__1_M, SCHUELER_KLSS_STP__1_W, SCHUELER_KLSS_STP__2, SCHUELER_KLSS_STP__2_M, SCHUELER_KLSS_STP__2_W, SCHUELER_KLSS_STP__3, SCHUELER_KLSS_STP__3_M, SCHUELER_KLSS_STP__3_W
-FROM dim_csv_klassenstufe;
-
-INSERT INTO dim_schulform (Schluessel, SCHUELER_SCH_STP, SCHUELER_SCH_STP__M, SCHUELER_SCH_STP__W, SCHUELER_SCH_STP__1, SCHUELER_SCH_STP__1_M, SCHUELER_SCH_STP__1_W, SCHUELER_SCH_STP__2, SCHUELER_SCH_STP__2_M, SCHUELER_SCH_STP__2_W, SCHUELER_SCH_STP__3, SCHUELER_SCH_STP__3_M, SCHUELER_SCH_STP__3_W, SCHUELER_SCH_STP__4, SCHUELER_SCH_STP__4_M, SCHUELER_SCH_STP__4_W, SCHUELER_SCH_STP__5, SCHUELER_SCH_STP__5_M, SCHUELER_SCH_STP__5_W, SCHUELER_SCH_STP__6, SCHUELER_SCH_STP__6_M, SCHUELER_SCH_STP__6_W, SCHUELER_SCH_STP__7, SCHUELER_SCH_STP__7_M, SCHUELER_SCH_STP__7_W)
-SELECT Schluessel, SCHUELER_SCH_STP, SCHUELER_SCH_STP__M, SCHUELER_SCH_STP__W, SCHUELER_SCH_STP__1, SCHUELER_SCH_STP__1_M, SCHUELER_SCH_STP__1_W, SCHUELER_SCH_STP__2, SCHUELER_SCH_STP__2_M, SCHUELER_SCH_STP__2_W, SCHUELER_SCH_STP__3, SCHUELER_SCH_STP__3_M, SCHUELER_SCH_STP__3_W, SCHUELER_SCH_STP__4, SCHUELER_SCH_STP__4_M, SCHUELER_SCH_STP__4_W, SCHUELER_SCH_STP__5, SCHUELER_SCH_STP__5_M, SCHUELER_SCH_STP__5_W, SCHUELER_SCH_STP__6, SCHUELER_SCH_STP__6_M, SCHUELER_SCH_STP__6_W, SCHUELER_SCH_STP__7, SCHUELER_SCH_STP__7_M, SCHUELER_SCH_STP__7_W
-FROM dim_csv_schulform;
-
-INSERT INTO dim_abschluss (Schluessel, SCHULABS_STP, SCHULABS_STP__M, SCHULABS_STP__W, SCHULABS_STP__1, SCHULABS_STP__1_M, SCHULABS_STP__1_W, SCHULABS_STP__2, SCHULABS_STP__2_M, SCHULABS_STP__2_W, SCHULABS_STP__3, SCHULABS_STP__3_M, SCHULABS_STP__3_W, SCHULABS_STP__22, SCHULABS_STP__22_M, SCHULABS_STP__22_W, SCHULABS_STP__23, SCHULABS_STP__23_M, SCHULABS_STP__23_W, SCHULABS_STP__24, SCHULABS_STP__24_M, SCHULABS_STP__24_W)
-SELECT Schluessel, SCHULABS_STP, SCHULABS_STP__M, SCHULABS_STP__W, SCHULABS_STP__1, SCHULABS_STP__1_M, SCHULABS_STP__1_W, SCHULABS_STP__2, SCHULABS_STP__2_M, SCHULABS_STP__2_W, SCHULABS_STP__3, SCHULABS_STP__3_M, SCHULABS_STP__3_W, SCHULABS_STP__22, SCHULABS_STP__22_M, SCHULABS_STP__22_W, SCHULABS_STP__23, SCHULABS_STP__23_M, SCHULABS_STP__23_W, SCHULABS_STP__24, SCHULABS_STP__24_M, SCHULABS_STP__24_W
-FROM dim_csv_hoechster_schulabschluss;
-
-INSERT INTO dim_berufl_abschluss (
-    Schluessel, BERUFABS_AUSF_STP, BERUFABS_AUSF_STP__M, BERUFABS_AUSF_STP__W, 
-    BERUFABS_AUSF_STP__1, BERUFABS_AUSF_STP__1_M, BERUFABS_AUSF_STP__1_W, 
-    BERUFABS_AUSF_STP__11, BERUFABS_AUSF_STP__11_M, BERUFABS_AUSF_STP__11_W, 
-    BERUFABS_AUSF_STP__15, BERUFABS_AUSF_STP__15_W, 
-    BERUFABS_AUSF_STP__16, BERUFABS_AUSF_STP__16_M, BERUFABS_AUSF_STP__16_W, 
-    BERUFABS_AUSF_STP__17, BERUFABS_AUSF_STP__17_M, BERUFABS_AUSF_STP__17_W, 
-    BERUFABS_AUSF_STP__2, BERUFABS_AUSF_STP__2_M, BERUFABS_AUSF_STP__2_W
-)
+#Befuellen der Faktentabelle
+-- Populieren der Faktentabelle
+INSERT INTO faktentabelle (
+    Bundschluessel, Landesschluessel, Gemeindeschluessel, 
+    Gemeindeverbandsschluessel, RegBezirkschluessel, Kreisschluessel, 
+    StadtTypSchluessel, Gesamtbevölkerung, Erwerbstätige, Arbeitslose, 
+    Schulabschlüsse, BeruflicheAbschlüsse)
 SELECT 
-    Schluessel, BERUFABS_AUSF_STP, BERUFABS_AUSF_STP__M, BERUFABS_AUSF_STP__W, 
-    BERUFABS_AUSF_STP__1, BERUFABS_AUSF_STP__1_M, BERUFABS_AUSF_STP__1_W, 
-    BERUFABS_AUSF_STP__11, BERUFABS_AUSF_STP__11_M, BERUFABS_AUSF_STP__11_W, 
-    BERUFABS_AUSF_STP__15, BERUFABS_AUSF_STP__15_W, 
-    BERUFABS_AUSF_STP__16, BERUFABS_AUSF_STP__16_M, BERUFABS_AUSF_STP__16_W, 
-    BERUFABS_AUSF_STP__17, BERUFABS_AUSF_STP__17_M, BERUFABS_AUSF_STP__17_W, 
-    BERUFABS_AUSF_STP__2, BERUFABS_AUSF_STP__2_M, BERUFABS_AUSF_STP__2_W
-FROM dim_csv_hoechster_berufl_abschluss;
-
-INSERT INTO dim_erwerbsstatus (
-    Schluessel, ERWERBSTAT_KURZ_STP, ERWERBSTAT_KURZ_STP__M, ERWERBSTAT_KURZ_STP__W, 
-    ERWERBSTAT_KURZ_STP__1, ERWERBSTAT_KURZ_STP__1_M, ERWERBSTAT_KURZ_STP__1_W, 
-    ERWERBSTAT_KURZ_STP__11, ERWERBSTAT_KURZ_STP__11_M, ERWERBSTAT_KURZ_STP__11_W, 
-    ERWERBSTAT_KURZ_STP__12, ERWERBSTAT_KURZ_STP__12_M, ERWERBSTAT_KURZ_STP__12_W, 
-    ERWERBSTAT_KURZ_STP__2, ERWERBSTAT_KURZ_STP__2_M, ERWERBSTAT_KURZ_STP__2_W
-)
-SELECT 
-    Schluessel, ERWERBSTAT_KURZ_STP, ERWERBSTAT_KURZ_STP__M, ERWERBSTAT_KURZ_STP__W, 
-    ERWERBSTAT_KURZ_STP__1, ERWERBSTAT_KURZ_STP__1_M, ERWERBSTAT_KURZ_STP__1_W, 
-    ERWERBSTAT_KURZ_STP__11, ERWERBSTAT_KURZ_STP__11_M, ERWERBSTAT_KURZ_STP__11_W, 
-    ERWERBSTAT_KURZ_STP__12, ERWERBSTAT_KURZ_STP__12_M, ERWERBSTAT_KURZ_STP__12_W, 
-    ERWERBSTAT_KURZ_STP__2, ERWERBSTAT_KURZ_STP__2_M, ERWERBSTAT_KURZ_STP__2_W
-FROM dim_csv_erwerbsstatus;
-
-INSERT INTO dim_alter (
-    Schluessel, ET_ALTER_ERW, ET_ALTER_ERW__M, ET_ALTER_ERW__W, 
-    ET_ALTER_ERW__1, ET_ALTER_ERW__1_M, ET_ALTER_ERW__1_W, 
-    ET_ALTER_ERW__2, ET_ALTER_ERW__2_M, ET_ALTER_ERW__2_W, 
-    ET_ALTER_ERW__3, ET_ALTER_ERW__3_M, ET_ALTER_ERW__3_W, 
-    ET_ALTER_ERW__4, ET_ALTER_ERW__4_M, ET_ALTER_ERW__4_W, 
-    ET_ALTER_ERW__5, ET_ALTER_ERW__5_M, ET_ALTER_ERW__5_W, 
-    ET_ALTER_ERW__6, ET_ALTER_ERW__6_M, ET_ALTER_ERW__6_W, 
-    ET_ALTER_ERW__7, ET_ALTER_ERW__7_M, ET_ALTER_ERW__7_W
-)
-SELECT 
-    Schluessel, ET_ALTER_ERW, ET_ALTER_ERW__M, ET_ALTER_ERW__W, 
-    ET_ALTER_ERW__1, ET_ALTER_ERW__1_M, ET_ALTER_ERW__1_W, 
-    ET_ALTER_ERW__2, ET_ALTER_ERW__2_M, ET_ALTER_ERW__2_W, 
-    ET_ALTER_ERW__3, ET_ALTER_ERW__3_M, ET_ALTER_ERW__3_W, 
-    ET_ALTER_ERW__4, ET_ALTER_ERW__4_M, ET_ALTER_ERW__4_W, 
-    ET_ALTER_ERW__5, ET_ALTER_ERW__5_M, ET_ALTER_ERW__5_W, 
-    ET_ALTER_ERW__6, ET_ALTER_ERW__6_M, ET_ALTER_ERW__6_W, 
-    ET_ALTER_ERW__7, ET_ALTER_ERW__7_M, ET_ALTER_ERW__7_W
-FROM dim_csv_et_alter;
-
-INSERT INTO dim_beruf (
-    Schluessel, ET_BERUFSKLSS_HGISCO_STP, ET_BERUFSKLSS_HGISCO_STP__M, ET_BERUFSKLSS_HGISCO_STP__W, 
-    ET_BERUFSKLSS_HGISCO_STP__1, ET_BERUFSKLSS_HGISCO_STP__1_M, ET_BERUFSKLSS_HGISCO_STP__1_W, 
-    ET_BERUFSKLSS_HGISCO_STP__2, ET_BERUFSKLSS_HGISCO_STP__2_M, ET_BERUFSKLSS_HGISCO_STP__2_W, 
-    ET_BERUFSKLSS_HGISCO_STP__7, ET_BERUFSKLSS_HGISCO_STP__7_M, ET_BERUFSKLSS_HGISCO_STP__7_W, 
-    ET_BERUFSKLSS_HGISCO_STP__8, ET_BERUFSKLSS_HGISCO_STP__8_M, ET_BERUFSKLSS_HGISCO_STP__8_W, 
-    ET_BERUFSKLSS_HGISCO_STP__9, ET_BERUFSKLSS_HGISCO_STP__9_M, ET_BERUFSKLSS_HGISCO_STP__9_W, 
-    ET_BERUFSKLSS_HGISCO_STP__0, ET_BERUFSKLSS_HGISCO_STP__0_M, ET_BERUFSKLSS_HGISCO_STP__0_W
-)
-SELECT 
-    Schluessel, ET_BERUFSKLSS_HGISCO_STP, ET_BERUFSKLSS_HGISCO_STP__M, ET_BERUFSKLSS_HGISCO_STP__W, 
-    ET_BERUFSKLSS_HGISCO_STP__1, ET_BERUFSKLSS_HGISCO_STP__1_M, ET_BERUFSKLSS_HGISCO_STP__1_W, 
-    ET_BERUFSKLSS_HGISCO_STP__2, ET_BERUFSKLSS_HGISCO_STP__2_M, ET_BERUFSKLSS_HGISCO_STP__2_W, 
-    ET_BERUFSKLSS_HGISCO_STP__7, ET_BERUFSKLSS_HGISCO_STP__7_M, ET_BERUFSKLSS_HGISCO_STP__7_W, 
-    ET_BERUFSKLSS_HGISCO_STP__8, ET_BERUFSKLSS_HGISCO_STP__8_M, ET_BERUFSKLSS_HGISCO_STP__8_W, 
-    ET_BERUFSKLSS_HGISCO_STP__9, ET_BERUFSKLSS_HGISCO_STP__9_M, ET_BERUFSKLSS_HGISCO_STP__9_W, 
-    ET_BERUFSKLSS_HGISCO_STP__0, ET_BERUFSKLSS_HGISCO_STP__0_M, ET_BERUFSKLSS_HGISCO_STP__0_W
-FROM dim_csv_et_beruf_hauptgr_isco08;
-
-INSERT INTO dim_wirtschaftszweig (
-    Schluessel, ET_WIRTSZWG_STP, ET_WIRTSZWG_STP__M, ET_WIRTSZWG_STP__W, 
-    ET_WIRTSZWG_STP__1, ET_WIRTSZWG_STP__1_M, ET_WIRTSZWG_STP__1_W, 
-    ET_WIRTSZWG_STP__2, ET_WIRTSZWG_STP__2_M, ET_WIRTSZWG_STP__2_W, 
-    ET_WIRTSZWG_STP__33, ET_WIRTSZWG_STP__33_W, 
-    ET_WIRTSZWG_STP__34, ET_WIRTSZWG_STP__34_M, ET_WIRTSZWG_STP__34_W, 
-    ET_WIRTSZWG_STP__35, ET_WIRTSZWG_STP__35_M, ET_WIRTSZWG_STP__35_W, 
-    ET_WIRTSZWG_STP__36, ET_WIRTSZWG_STP__36_M, ET_WIRTSZWG_STP__36_W
-)
-SELECT 
-    Schluessel, ET_WIRTSZWG_STP, ET_WIRTSZWG_STP__M, ET_WIRTSZWG_STP__W, 
-    ET_WIRTSZWG_STP__1, ET_WIRTSZWG_STP__1_M, ET_WIRTSZWG_STP__1_W, 
-    ET_WIRTSZWG_STP__2, ET_WIRTSZWG_STP__2_M, ET_WIRTSZWG_STP__2_W, 
-    ET_WIRTSZWG_STP__33, ET_WIRTSZWG_STP__33_W, 
-    ET_WIRTSZWG_STP__34, ET_WIRTSZWG_STP__34_M, ET_WIRTSZWG_STP__34_W, 
-    ET_WIRTSZWG_STP__35, ET_WIRTSZWG_STP__35_M, ET_WIRTSZWG_STP__35_W, 
-    ET_WIRTSZWG_STP__36, ET_WIRTSZWG_STP__36_M, ET_WIRTSZWG_STP__36_W
-FROM dim_csv_et_wirtschaftszweig;
-
-INSERT INTO dim_stellung (
-    Schluessel, ET_STELLGBERF_STP, ET_STELLGBERF_STP__M, ET_STELLGBERF_STP__W, 
-    ET_STELLGBERF_STP__1, ET_STELLGBERF_STP__1_M, ET_STELLGBERF_STP__1_W, 
-    ET_STELLGBERF_STP__2, ET_STELLGBERF_STP__2_M, ET_STELLGBERF_STP__2_W, 
-    ET_STELLGBERF_STP__3, ET_STELLGBERF_STP__3_M, ET_STELLGBERF_STP__3_W, 
-    ET_STELLGBERF_STP__4, ET_STELLGBERF_STP__4_M, ET_STELLGBERF_STP__4_W, 
-    ET_STELLGBERF_STP__5, ET_STELLGBERF_STP__5_M, ET_STELLGBERF_STP__5_W
-)
-SELECT 
-    Schluessel, ET_STELLGBERF_STP, ET_STELLGBERF_STP__M, ET_STELLGBERF_STP__W, 
-    ET_STELLGBERF_STP__1, ET_STELLGBERF_STP__1_M, ET_STELLGBERF_STP__1_W, 
-    ET_STELLGBERF_STP__2, ET_STELLGBERF_STP__2_M, ET_STELLGBERF_STP__2_W, 
-    ET_STELLGBERF_STP__3, ET_STELLGBERF_STP__3_M, ET_STELLGBERF_STP__3_W, 
-    ET_STELLGBERF_STP__4, ET_STELLGBERF_STP__4_M, ET_STELLGBERF_STP__4_W, 
-    ET_STELLGBERF_STP__5, ET_STELLGBERF_STP__5_M, ET_STELLGBERF_STP__5_W
-FROM dim_csv_et_stellung_im_beruf;
-
-INSERT INTO dim_region1 (Gemeindeschlüssel, Name, Gemeindeverbandsschlüssel)
-SELECT 
-    Gemeindeschlüssel, Name, Gemeindeverbandsschlüssel
+    l.Bundschluessel,
+    l.Landesschluessel,
+    g.Gemeindeschluessel,
+    gv.Gemeindeverbandsschluessel,
+    r.RegBezirkschluessel,
+    k.Kreisschluessel,
+    st.Schluessel AS StadtTypSchluessel,
+    SUM(CASE WHEN kl.Schluessel IS NOT NULL THEN kl.SCHUELER_KLSS_STP ELSE 0 END) AS Gesamtbevölkerung,
+    SUM(CASE WHEN e.Schluessel IS NOT NULL THEN e.ERWERBSTAT_KURZ_STP ELSE 0 END) AS Erwerbstätige,
+    SUM(CASE WHEN e.Schluessel IS NOT NULL THEN e.ERWERBSTAT_KURZ_STP__12 ELSE 0 END) AS Arbeitslose,
+    SUM(CASE WHEN hs.Schluessel IS NOT NULL THEN hs.SCHULABS_STP ELSE 0 END) AS Schulabschlüsse,
+    SUM(CASE WHEN hb.Schluessel IS NOT NULL THEN hb.BERUFABS_AUSF_STP ELSE 0 END) AS BeruflicheAbschlüsse
 FROM 
-    dim_gemeinde;
+    dim_land l
+    LEFT JOIN dim_gemeinde g ON l.Landesschluessel = g.Landesschluessel
+    LEFT JOIN dim_gemeindeverband gv ON g.Gemeindeverbandsschluessel = gv.Gemeindeverbandsschluessel
+    LEFT JOIN dim_regierungsbezirk r ON gv.Kreisschluessel = r.RegBezirkschluessel
+    LEFT JOIN dim_stadtkreiskreisfreiestadtlandkreis k ON r.RegBezirkschluessel = k.RegBezirkschluessel
+    LEFT JOIN dim_stadt_typen st ON g.Gemeindeschluessel = st.Schluessel
+    LEFT JOIN dim_klassenstufe kl ON g.Gemeindeschluessel = kl.Schluessel
+    LEFT JOIN dim_erwerbsstatus e ON g.Gemeindeschluessel = e.Schluessel
+    LEFT JOIN dim_hoechster_schulabschluss hs ON g.Gemeindeschluessel = hs.Schluessel
+    LEFT JOIN dim_hoechster_berufl_abschluss hb ON g.Gemeindeschluessel = hb.Schluessel
+GROUP BY 
+    l.Bundschluessel, l.Landesschluessel, g.Gemeindeschluessel, 
+    gv.Gemeindeverbandsschluessel, r.RegBezirkschluessel, k.Kreisschluessel, st.Schluessel;
 
-# Faktentabelle befuellen
+-- Überprüfen der Integrität und Konsistenz der Datenbank
+PRAGMA foreign_keys = ON;
 
-INSERT INTO fact_zensus (
-    schluessel, klasse_schluessel, schulform_schluessel, abschluss_schluessel, berufl_abschluss_schluessel, erwerbsstatus_schluessel, alter_schluessel, beruf_schluessel, wirtschaftszweig_schluessel, stellung_schluessel, region_schluessel
-)
-SELECT 
-    dim_csv_klassenstufe.schluessel, 
-    dim_csv_klassenstufe.schluessel AS klasse_schluessel, 
-    dim_csv_schulform.schluessel AS schulform_schluessel, 
-    dim_csv_hoechster_schulabschluss.schluessel AS abschluss_schluessel, 
-    dim_csv_hoechster_berufl_abschluss.schluessel AS berufl_abschluss_schluessel, 
-    dim_csv_erwerbsstatus.schluessel AS erwerbsstatus_schluessel, 
-    dim_csv_et_alter.schluessel AS alter_schluessel, 
-    dim_csv_et_beruf_hauptgr_isco08.schluessel AS beruf_schluessel, 
-    dim_csv_et_wirtschaftszweig.schluessel AS wirtschaftszweig_schluessel, 
-    dim_csv_et_stellung_im_beruf.schluessel AS stellung_schluessel, 
-    dim_region1.gemeindeschlüssel AS region_schluessel
-FROM 
-    dim_csv_klassenstufe
-    JOIN dim_csv_schulform ON dim_csv_klassenstufe.schluessel = dim_csv_schulform.schluessel
-    JOIN dim_csv_hoechster_schulabschluss ON dim_csv_klassenstufe.schluessel = dim_csv_hoechster_schulabschluss.schluessel
-    JOIN dim_csv_hoechster_berufl_abschluss ON dim_csv_klassenstufe.schluessel = dim_csv_hoechster_berufl_abschluss.schluessel
-    JOIN dim_csv_erwerbsstatus ON dim_csv_klassenstufe.schluessel = dim_csv_erwerbsstatus.schluessel
-    JOIN dim_csv_et_alter ON dim_csv_klassenstufe.schluessel = dim_csv_et_alter.schluessel
-    JOIN dim_csv_et_beruf_hauptgr_isco08 ON dim_csv_klassenstufe.schluessel = dim_csv_et_beruf_hauptgr_isco08.schluessel
-    JOIN dim_csv_et_wirtschaftszweig ON dim_csv_klassenstufe.schluessel = dim_csv_et_wirtschaftszweig.schluessel
-    JOIN dim_csv_et_stellung_im_beruf ON dim_csv_klassenstufe.schluessel = dim_csv_et_stellung_im_beruf.schluessel
-    JOIN dim_region1 ON dim_csv_klassenstufe.schluessel = dim_region1.gemeindeschlüssel;
+-- Überprüfen, ob alle Fremdschlüssel aktiviert und korrekt sind
+PRAGMA foreign_key_check;
