@@ -1,86 +1,82 @@
--- Sicherstellen, dass jede Dimensionstabelle einen Primärschlüssel hat
-ALTER TABLE dim_bund ADD PRIMARY KEY (Bundschluessel);
-ALTER TABLE dim_land ADD PRIMARY KEY (Landesschluessel);
-ALTER TABLE dim_gemeinde ADD PRIMARY KEY (Gemeindeschluessel);
-ALTER TABLE dim_gemeindeverband ADD PRIMARY KEY (Gemeindeverbandsschluessel);
-ALTER TABLE dim_regierungsbezirk ADD PRIMARY KEY (RegBezirkschluessel);
-ALTER TABLE dim_stadtkreiskreisfreiestadtlandkreis ADD PRIMARY KEY (Kreisschluessel);
-ALTER TABLE dim_stadt_typen ADD PRIMARY KEY (Schluessel);
+-- Dimensionstabellen erstellen und Primärschlüssel hinzufügen
 
-ALTER TABLE dim_klassenstufe ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_schulform ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_hoechster_schulabschluss ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_hoechster_berufl_abschluss ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_erwerbsstatus ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_et_alter ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_et_hoechst_berufl_abschl ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_et_stellung_im_beruf ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_et_beruf_hauptgr_isco08 ADD PRIMARY KEY (Schluessel);
-ALTER TABLE dim_et_wirtschaftszweig ADD PRIMARY KEY (Schluessel);
+-- Beispiel für eine Dimensionstabelle
+ALTER TABLE public.dim_bund ADD PRIMARY KEY (bundschluessel);
+ALTER TABLE public.dim_land ADD PRIMARY KEY (landesschluessel);
+ALTER TABLE public.dim_gemeinde ADD PRIMARY KEY (gemeindeschluessel);
+ALTER TABLE public.dim_gemeindeverband ADD PRIMARY KEY (gemeindeverbandsschluessel);
+ALTER TABLE public.dim_regierungsbezirk ADD PRIMARY KEY (regbezirkschluessel);
+ALTER TABLE public.dim_stadtkreiskreisfreiestadtlandkreis ADD PRIMARY KEY (kreisschluessel);
+ALTER TABLE public.dim_stadt_typen ADD PRIMARY KEY (schluessel);
 
-#Faktentabelle erstellen
-CREATE TABLE faktentabelle (
-    Faktenschluessel INTEGER PRIMARY KEY AUTOINCREMENT,
-    Bundschluessel INTEGER,
-    Landesschluessel INTEGER,
-    Gemeindeschluessel INTEGER,
-    Gemeindeverbandsschluessel INTEGER,
-    RegBezirkschluessel INTEGER,
-    Kreisschluessel INTEGER,
-    StadtTypSchluessel INTEGER,
-    Gesamtbevölkerung INTEGER,
-    Erwerbstätige INTEGER,
-    Arbeitslose INTEGER,
-    Schulabschlüsse INTEGER,
-    BeruflicheAbschlüsse INTEGER,
+-- Weitere Dimensionstabellen mit Primärschlüsseln
+ALTER TABLE public.dim_klassenstufe ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_schulform ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_hoechster_schulabschluss ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_hoechster_berufl_abschluss ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_erwerbsstatus ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_et_alter ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_et_hoechst_berufl_abschl ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_et_stellung_im_beruf ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_et_beruf_hauptgr_isco08 ADD PRIMARY KEY (schluessel);
+ALTER TABLE public.dim_et_wirtschaftszweig ADD PRIMARY KEY (schluessel);
+
+
+-- Faktentabelle erstellen
+CREATE TABLE public.faktentabelle (
+    faktenschluessel SERIAL PRIMARY KEY,
+    landesschluessel BIGINT,
+    gemeindeschluessel BIGINT,
+    gemeindeverbandsschluessel BIGINT,
+    regbezirkschluessel BIGINT,
+    kreisschluessel BIGINT,
+    stadttypschluessel BIGINT,
+    gesamtbevölkerung INTEGER,
+    erwerbstätige INTEGER,
+    arbeitslose INTEGER,
+    schulabschlüsse INTEGER,
+    beruflicheabschlüsse INTEGER,
     -- Fremdschlüssel-Beziehungen definieren
-    FOREIGN KEY (Bundschluessel) REFERENCES dim_bund(Bundschluessel),
-    FOREIGN KEY (Landesschluessel) REFERENCES dim_land(Landesschluessel),
-    FOREIGN KEY (Gemeindeschluessel) REFERENCES dim_gemeinde(Gemeindeschluessel),
-    FOREIGN KEY (Gemeindeverbandsschluessel) REFERENCES dim_gemeindeverband(Gemeindeverbandsschluessel),
-    FOREIGN KEY (RegBezirkschluessel) REFERENCES dim_regierungsbezirk(RegBezirkschluessel),
-    FOREIGN KEY (Kreisschluessel) REFERENCES dim_stadtkreiskreisfreiestadtlandkreis(Kreisschluessel),
-    FOREIGN KEY (StadtTypSchluessel) REFERENCES dim_stadt_typen(Schluessel)
+    FOREIGN KEY (landesschluessel) REFERENCES public.dim_land(landesschluessel),
+    FOREIGN KEY (gemeindeschluessel) REFERENCES public.dim_gemeinde(gemeindeschluessel),
+    FOREIGN KEY (gemeindeverbandsschluessel) REFERENCES public.dim_gemeindeverband(gemeindeverbandsschluessel),
+    FOREIGN KEY (regbezirkschluessel) REFERENCES public.dim_regierungsbezirk(regbezirkschluessel),
+    FOREIGN KEY (kreisschluessel) REFERENCES public.dim_stadtkreiskreisfreiestadtlandkreis(kreisschluessel),
+    FOREIGN KEY (stadttypschluessel) REFERENCES public.dim_stadt_typen(schluessel)
+);
+
 );
 
 
-#Befuellen der Faktentabelle
 -- Populieren der Faktentabelle
-INSERT INTO faktentabelle (
-    Bundschluessel, Landesschluessel, Gemeindeschluessel, 
-    Gemeindeverbandsschluessel, RegBezirkschluessel, Kreisschluessel, 
-    StadtTypSchluessel, Gesamtbevölkerung, Erwerbstätige, Arbeitslose, 
-    Schulabschlüsse, BeruflicheAbschlüsse)
+INSERT INTO public.faktentabelle (
+    landesschluessel, gemeindeschluessel, 
+    gemeindeverbandsschluessel, regbezirkschluessel, kreisschluessel, 
+    stadttypschluessel, gesamtbevölkerung, erwerbstätige, arbeitslose, 
+    schulabschlüsse, beruflicheabschlüsse)
 SELECT 
-    l.Bundschluessel,
-    l.Landesschluessel,
-    g.Gemeindeschluessel,
-    gv.Gemeindeverbandsschluessel,
-    r.RegBezirkschluessel,
-    k.Kreisschluessel,
-    st.Schluessel AS StadtTypSchluessel,
-    SUM(CASE WHEN kl.Schluessel IS NOT NULL THEN kl.SCHUELER_KLSS_STP ELSE 0 END) AS Gesamtbevölkerung,
-    SUM(CASE WHEN e.Schluessel IS NOT NULL THEN e.ERWERBSTAT_KURZ_STP ELSE 0 END) AS Erwerbstätige,
-    SUM(CASE WHEN e.Schluessel IS NOT NULL THEN e.ERWERBSTAT_KURZ_STP__12 ELSE 0 END) AS Arbeitslose,
-    SUM(CASE WHEN hs.Schluessel IS NOT NULL THEN hs.SCHULABS_STP ELSE 0 END) AS Schulabschlüsse,
-    SUM(CASE WHEN hb.Schluessel IS NOT NULL THEN hb.BERUFABS_AUSF_STP ELSE 0 END) AS BeruflicheAbschlüsse
+    l.landesschluessel,
+    g.gemeindeschluessel,
+    gv.gemeindeverbandsschluessel,
+    r.regbezirkschluessel,
+    k.kreisschluessel,
+    st.schluessel AS stadttypschluessel,
+    SUM(CASE WHEN kl.schluessel IS NOT NULL THEN kl.schueler_klss_stp ELSE 0 END) AS gesamtbevölkerung,
+    SUM(CASE WHEN e.schluessel IS NOT NULL THEN e.erwerbstat_kurz_stp ELSE 0 END) AS erwerbstätige,
+    SUM(CASE WHEN e.schluessel IS NOT NULL THEN e.erwerbstat_kurz_stp__12 ELSE 0 END) AS arbeitslose,
+    SUM(CASE WHEN hs.schluessel IS NOT NULL THEN hs.schulabs_stp ELSE 0 END) AS schulabschlüsse,
+    SUM(CASE WHEN hb.schluessel IS NOT NULL THEN hb.berufabs_ausf_stp ELSE 0 END) AS beruflicheabschlüsse
 FROM 
-    dim_land l
-    LEFT JOIN dim_gemeinde g ON l.Landesschluessel = g.Landesschluessel
-    LEFT JOIN dim_gemeindeverband gv ON g.Gemeindeverbandsschluessel = gv.Gemeindeverbandsschluessel
-    LEFT JOIN dim_regierungsbezirk r ON gv.Kreisschluessel = r.RegBezirkschluessel
-    LEFT JOIN dim_stadtkreiskreisfreiestadtlandkreis k ON r.RegBezirkschluessel = k.RegBezirkschluessel
-    LEFT JOIN dim_stadt_typen st ON g.Gemeindeschluessel = st.Schluessel
-    LEFT JOIN dim_klassenstufe kl ON g.Gemeindeschluessel = kl.Schluessel
-    LEFT JOIN dim_erwerbsstatus e ON g.Gemeindeschluessel = e.Schluessel
-    LEFT JOIN dim_hoechster_schulabschluss hs ON g.Gemeindeschluessel = hs.Schluessel
-    LEFT JOIN dim_hoechster_berufl_abschluss hb ON g.Gemeindeschluessel = hb.Schluessel
+    public.dim_land l
+    LEFT JOIN public.dim_gemeinde g ON g.gemeindeverbandsschluessel = l.landesschluessel
+    LEFT JOIN public.dim_gemeindeverband gv ON g.gemeindeverbandsschluessel = gv.gemeindeverbandsschluessel
+    LEFT JOIN public.dim_regierungsbezirk r ON gv.kreisschluessel = r.regbezirkschluessel
+    LEFT JOIN public.dim_stadtkreiskreisfreiestadtlandkreis k ON r.regbezirkschluessel = k.regbezirkschluessel
+    LEFT JOIN public.dim_stadt_typen st ON g.gemeindeschluessel = st.schluessel
+    LEFT JOIN public.dim_klassenstufe kl ON g.gemeindeschluessel = kl.schluessel
+    LEFT JOIN public.dim_erwerbsstatus e ON g.gemeindeschluessel = e.schluessel
+    LEFT JOIN public.dim_hoechster_schulabschluss hs ON g.gemeindeschluessel = hs.schluessel
+    LEFT JOIN public.dim_hoechster_berufl_abschluss hb ON g.gemeindeschluessel = hb.schluessel
 GROUP BY 
-    l.Bundschluessel, l.Landesschluessel, g.Gemeindeschluessel, 
-    gv.Gemeindeverbandsschluessel, r.RegBezirkschluessel, k.Kreisschluessel, st.Schluessel;
-
--- Überprüfen der Integrität und Konsistenz der Datenbank
-PRAGMA foreign_keys = ON;
-
--- Überprüfen, ob alle Fremdschlüssel aktiviert und korrekt sind
-PRAGMA foreign_key_check;
+    l.landesschluessel, g.gemeindeschluessel, 
+    gv.gemeindeverbandsschluessel, r.regbezirkschluessel, k.kreisschluessel, st.schluessel;
