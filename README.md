@@ -2,7 +2,7 @@
 ## Projektbeschreibung
 In diesem Projekt wurden die Zensusdaten 2022 aus Deutschland systematisch verarbeitet. Ziel war es, die Rohdaten aus Excel-Dateien zu bereinigen, in die zweite Normalform zu überführen und anschließend in ein Sternschema innerhalb einer PostgreSQL-Datenbank zu integrieren. Der Fokus lag auf der Schaffung einer stabilen, skalierbaren Basis für relationale und multidimensionale Analysen (ROLAP).
 
-Projektstruktur
+## Projektstruktur
 ETL-Prozess: Datenextraktion, Transformation und Laden in PostgreSQL
 
 Normalisierung: Überführung der Daten in die zweite Normalform (2NF)
@@ -11,7 +11,7 @@ Datenmodellierung: Aufbau eines Sternschemas für OLAP-Abfragen
 
 Technologie: Kombination relationaler und multidimensionaler Datenbankarchitektur
 
-Verwendete Technologien
+## Verwendete Technologien
 Python
 
 pandas
@@ -26,7 +26,7 @@ SQLTools (VS Code Plugin)
 
 Visual Studio Code
 
-Installation
+## Installation
 Python-Umgebung einrichten
 
 Abhängigkeiten installieren:
@@ -39,7 +39,7 @@ PostgreSQL-Datenbank erstellen und konfigurieren
 
 Skript zur Datenverarbeitung und -übertragung ausführen
 
-Features
+## Features
 Vollständiger ETL-Prozess von Excel zu PostgreSQL
 
 Umsetzung eines Sternschemas
@@ -48,10 +48,10 @@ Unterstützung relationaler und OLAP-basierter Analysen
 
 Bereinigung fehlerhafter Werte und Behandlung fehlender Daten
 
-Hinweise
+## Hinweise
 Die Daten enthalten NA-Werte für einige Gemeinden ohne Zuordnung zu Gemeindeverbänden.
 
 Aggregierte Werte können von den erwarteten Summen leicht abweichen.
 
-Autor
+## Autor
 Dennis Reimer – August 2024
